@@ -5,3 +5,14 @@ from django.http import HttpResponse
 
 def mostrar_inicio(request):    
     return render(request,"Blog/inicio.html")
+
+def mostrar_autores(request):
+    return render(request,"Blog/autor.html")
+
+
+def mostrar_articulos(request):
+    return render(request,"Blog/articulo.html")
+
+
+def mostrar_seccion(request):
+    return render(request,"Blog/seccion.html")
