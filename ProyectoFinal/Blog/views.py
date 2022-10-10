@@ -19,10 +19,19 @@ def mostrar_seccion(request):
     return render(request,"blog/seccion.html")
 
 
-def procesar_formulario(request):
+def procesar_formulario_autor(request):
     if request.method !="POST":
-        return render(request, "blog/formularioautor.html")
+        return render(request, "blog/formulario_autor.html")
     
     autor=Autor ( nombre=request.POST["nombre"],apellido=request.POST["apellido"],profesion=request.POST["profesion"])
     autor.save()
     return render(request,"blog/inicio.html")
+
+def procesar_formulario_articulo(request):
+    if request.method !="POST":
+        return render(request, "blog/formulario_articulo.html")
+    
+    autor=Articulo ( titulo=request.POST["titulo"],fecha=request.POST["fecha"],texto=request.POST["texto"])
+    autor.save()
+    return render(request,"blog/inicio.html")
+

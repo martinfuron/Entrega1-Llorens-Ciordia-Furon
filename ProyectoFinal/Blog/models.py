@@ -24,6 +24,10 @@ class Articulo (models.Model):
     texto=models.CharField(max_length=1500)
     fecha=models.DateField(null=True)
 
+    def __str__(self):
+        return (f"{self.titulo} {self.fecha}")
+
+
 
 class Section (models.Model):
     
