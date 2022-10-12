@@ -19,10 +19,46 @@ def mostrar_seccion(request):
     return render(request,"blog/seccion.html")
 
 
-def procesar_formulario(request):
+def procesar_formulario_autor(request):
     if request.method !="POST":
-        return render(request, "blog/formularioautor.html")
+        return render(request, "blog/formulario_autor.html")
     
     autor=Autor ( nombre=request.POST["nombre"],apellido=request.POST["apellido"],profesion=request.POST["profesion"])
     autor.save()
     return render(request,"blog/inicio.html")
+
+
+def procesar_formulario_articulo (request):
+    if request.method !="POST":
+        return render(request, "blog/formulario_articulo.html")
+    
+    articulo=Articulo ( titulo=request.POST["titulo"],fecha=request.POST["fecha"],texto=request.POST["texto"])
+    articulo.save()
+    return render(request,"blog/inicio.html")
+
+
+def procesar_formulario_seccion (request):
+    if request.method !="POST":
+        return render(request, "blog/formulario_seccion.html")
+    
+    seccion=Articulo ( nombre=request.POST["nombre"])
+    seccion.save()
+    return render(request,"blog/inicio.html")
+
+def busqueda (request):
+    return render (request, "blog/busqueda.html")
+
+def buscar (request):
+    if not request.GET["apellido"]:
+        return HttpResponse ("No se enviaron datos")
+    else: 
+        autor_busqueda= request.GET["apellido"]
+        autor_encontrado=Autor.objects.filter(apellido=autor_busqueda)
+        
+        
+        contexto                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ={
+            "apellido": autor_busqueda,
+            "autor": autor_encontrado
+        }
+        
+    return render(request, "blog/resultado_de_la_busqueda.html",contexto)
