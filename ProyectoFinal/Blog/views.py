@@ -27,6 +27,7 @@ def procesar_formulario_autor(request):
     autor.save()
     return render(request,"blog/inicio.html")
 
+<<<<<<< HEAD
 
 def procesar_formulario_articulo (request):
     if request.method !="POST":
@@ -62,3 +63,13 @@ def buscar (request):
         }
         
     return render(request, "blog/resultado_de_la_busqueda.html",contexto)
+=======
+def procesar_formulario_articulo(request):
+    if request.method !="POST":
+        return render(request, "blog/formulario_articulo.html")
+    
+    autor=Articulo ( titulo=request.POST["titulo"],fecha=request.POST["fecha"],texto=request.POST["texto"])
+    autor.save()
+    return render(request,"blog/inicio.html")
+
+>>>>>>> 0d4f3f5489f92a7c36a52595a1679bdb12d832c3
