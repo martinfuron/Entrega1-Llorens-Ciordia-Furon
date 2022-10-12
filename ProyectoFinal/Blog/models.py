@@ -12,7 +12,7 @@ class Autor (models.Model):
     profesion=models.CharField(max_length=40)
     
     def __str__(self):
-        return (f"{self.nombre} {self.apellido}")
+        return (f"{self.nombre} {self.apellido} {self.profesion}")
 
 
 class Articulo (models.Model):

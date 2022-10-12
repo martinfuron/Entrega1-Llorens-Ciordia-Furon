@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Autores</title>
-</head>
-<body style="background-color: orange;">
+
+
+    {% extends "Blog/padre.html" %}
+
+    {% load static %}
+
+{% block Insertar_contenido %}
     <form action="/blog/formulario_autor/" method="POST"> {% csrf_token %}
         <p> Nombre: <input type="text" name="nombre"></p>
         <p>Apellido: <input type="text" name="apellido"></p>
@@ -14,6 +12,4 @@
         <input type= "submit" value= "Guardar" >
     </form>
 
-
-</body>
-</html>
+{% endblock %}

@@ -46,17 +46,18 @@ def procesar_formulario_seccion(request):
 def busqueda(request):
     return render(request, "blog/busqueda.html")
 
-def buscar(request):
-    if not request.GET("nombre"):
-        return HttpResponse("No buscaste nada")
-    else:
-        nombre = request.GET("nombre")
-        autor = Autor.objects.filter(nomnbre=nombre)
+def buscar (request):
 
-        contexto= {
-            "nombre": nombre,
-            "autor": autor,
-        }
+    if not request.GET["apellido"]:
+        return HttpResponse ("No se enviaron datos")
+    else: 
+        apellido_buscado= request.GET["apellido"]
+        autores = Autor.objects.filter(apellido = apellido_buscado)
+                
+        contexto={
+            "apellido": apellido_buscado,
+             "autores": autores
+             }
     
     return render(request, "blog/resultado_busqueda.html", contexto)
 

@@ -1,11 +1,19 @@
-<p>Estamos buscando el autor: {{ nombre }}</p>
+{% extends "Blog/padre.html" %}
 
-{% if autor %}
+{% load static %}
 
-<ul>
-    {% for autor in autores %}
-        <li>{{autor.nombre}} {{autor.apellido}} { profesion: {autor.profesion}} </li>
-    {% endfor %}
-</ul>
+{% block Insertar_contenido %}
+<p>Estamos buscando el autor: {{ apellido }}</p>
+
+{% if autores %}
+    <ul>
+        {% for autor in autores %}
+            <li>{{autor.nombre}} {{autor.apellido}} --- Profesion: {{autor.profesion}} </li>
+        {% endfor %}
+    </ul>
 
 {% endif %}
+
+{% endblock %}
+
+

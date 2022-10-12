@@ -1,4 +1,15 @@
+{% extends "Blog/padre.html" %}
+
+{% load static %}
+
+{% block Insertar_contenido %}
+
+<p>Buscar autor por appelido: </p><br>
+
 <form action="/blog/buscar" method="GET">
-    <p><input type="nombre" name="autor"></p>
+    <p><input type="text" name="apellido" id="apellido"></p>
     <input type="submit" value="Buscar">
 </form>
+
+{% endblock %}
+
