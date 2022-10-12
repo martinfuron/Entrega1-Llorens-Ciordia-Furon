@@ -31,7 +31,32 @@ def procesar_formulario_articulo(request):
     if request.method !="POST":
         return render(request, "blog/formulario_articulo.html")
     
-    autor=Articulo ( titulo=request.POST["titulo"],fecha=request.POST["fecha"],texto=request.POST["texto"])
-    autor.save()
+    articulo=Articulo ( titulo=request.POST["titulo"],fecha=request.POST["fecha"],texto=request.POST["texto"])
+    articulo.save()
     return render(request,"blog/inicio.html")
+
+def procesar_formulario_seccion(request):
+    if request.method !="POST":
+        return render(request, "blog/formulario_seccion.html")
+    
+    seccion=Section ( nombre=request.POST["nombre"])
+    seccion.save()
+    return render(request,"blog/inicio.html")
+
+def busqueda(request):
+    return render(request, "blog/busqueda.html")
+
+def buscar(request):
+    if not request.GET("nombre"):
+        return HttpResponse("No buscaste nada")
+    else:
+        nombre = request.GET("nombre")
+        autor = Autor.objects.filter(nomnbre=nombre)
+
+        contexto= {
+            "nombre": nombre,
+            "autor": autor,
+        }
+    
+    return render(request, "blog/resultado_busqueda.html", contexto)
 
