@@ -1,0 +1,22 @@
+
+{% extends "Blog/padre.html" %}
+
+{% load static %}
+
+{% block Insertar_contenido %}
+
+{% if formulario.errors %}
+
+<p style="color: red;"> ERROR: Alguno de los datos ingresados es incorrecto, intentar nuevamente.</p>
+
+{% endif %}
+
+<form action="" method="POST">{% csrf_token %}
+    <table>
+        {{ formulario.as_table }}
+    </table>
+    <input type="submit" value="Enviar" />
+</form>
+
+
+{% endblock %}

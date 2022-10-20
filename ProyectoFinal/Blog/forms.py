@@ -7,8 +7,8 @@ class AutorFormulario(forms.Form):
 
 class ArticuloFormulario(forms.Form):
     titulo = forms.CharField()
-    texto = forms.Textarea()
     fecha = forms.DateField()
+    texto = forms.Textarea()
 
 class SeccionFormulario(forms.Form):
     nombre = forms.CharField()

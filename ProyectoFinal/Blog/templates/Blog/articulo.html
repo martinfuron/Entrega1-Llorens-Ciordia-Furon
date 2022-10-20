@@ -3,5 +3,16 @@
 {% load static %}
 
 {% block Insertar_contenido %}
-Este es el template de articulos
+
+{% if articulos %}
+    <ul>
+        {% for articulo in articulos %}
+            <li style="margin-left: 5%; margin-top: 2%;" >{{articulo.titulo}}  <i style="margin-left: 35%;">publicado:{{articulo.fecha}}</i> <br><br><br> 
+            <div style="width: 50%;" >{{articulo.texto}}</div> </li>
+            <br><br>
+        {% endfor %}
+    </ul>
+
+{% endif %}
+
 {% endblock %}
