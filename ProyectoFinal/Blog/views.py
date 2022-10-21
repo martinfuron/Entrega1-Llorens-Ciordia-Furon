@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from Blog.models import Autor, Articulo, Section
+from Blog.models import Autor, Articulo, Blog
 from Blog.forms import AutorFormulario, ArticuloFormulario, SeccionFormulario
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
-# Create your views here.
 
 def mostrar_inicio(request):    
     return render(request,"blog/inicio.html")
@@ -18,13 +18,6 @@ def mostrar_seccion(request):
     return render(request,"blog/seccion.html")
 
 
-    if request.method !="POST":
-        return render(request, "blog/formulario_autor.html")
-    
-    autor=Autor ( nombre=request.POST["nombre"],apellido=request.POST["apellido"],profesion=request.POST["profesion"])
-    autor.save()
-    return render(request,"blog/inicio.html")
-
 def formulario_autor(request):
     if request.method != "POST":
         mi_formulario = AutorFormulario()
@@ -38,14 +31,6 @@ def formulario_autor(request):
             
     contexto =  {"formulario": mi_formulario}
     return render(request, "Blog/formulario.html", contexto)
-
-
-    if request.method !="POST":
-        return render(request, "blog/formulario_articulo.html")
-    
-    articulo=Articulo ( titulo=request.POST["titulo"],fecha=request.POST["fecha"],texto=request.POST["texto"])
-    articulo.save()
-    return render(request,"blog/inicio.html")
 
 def formulario_articulo(request):
     if request.method !="POST":
@@ -95,3 +80,23 @@ def mostrar_articulos (request):
              "articulos": articulos,
              }
     return render(request, "blog/articulo.html", contexto)
+
+class BlogList(ListView):
+    model = Blog
+    template_name = "Blog\pages.html" 
+
+class BlogDetail(DetailView):
+    model = Blog
+    template_name = "Blog\pages.html" 
+
+class BlogCreate(CreateView):
+    model = Blog
+    template_name = "Blog\pages.html"
+
+class BlogUpdate(UpdateView):
+    model = Blog
+    template_name = "Blog\pages.html" 
+
+class BlogDelete(DeleteView):
+    model = Blog
+    template_name = "Blog\pages.html" 
