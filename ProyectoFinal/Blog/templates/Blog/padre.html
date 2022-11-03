@@ -9,28 +9,36 @@
 <header>
     <nav style="margin-left: 1%; margin-top: 1%;">  
 
-    <a style="margin-left: 1%;" href="../inicio">Inicio</a>
-    <a style="margin-left: 1%;" href="../autor">Autor</a>
-    <a style="margin-left: 1%;" href="../articulo">Articulo</a>
-    <a style="margin-left: 1%;" href="../seccion">Seccion</a>
-    <a style="margin-left: 1%;" href="../busqueda">Busqueda</a>
-    <a style="margin-left: 1%;" href="../formulario_autor">Crear Autor</a>
-    <a style="margin-left: 1%;" href="../formulario_articulo">Crear Articulo</a>
-    <a style="margin-left: 1%;" href="../formulario_seccion">Crear Seccion</a>
+    <a style="margin-left: 1%;" href="{% url 'inicio' %}">Inicio</a>
+    <a style="margin-left: 1%;" href="{% url 'articulo' %}">Articulo</a>
+
+
+    {% if not request.user.is_authenticated %}
+    <a style="margin-left: 1%;" href="{% url 'registro' %}">Registrarse</a>
+    <a style="margin-left: 1%;" href="{% url 'login' %}">Login</a>
+    {% endif %}
+
+    {% if request.user.is_authenticated %}
+    <a style="margin-left: 1%;" href="{% url 'autor' %}">Autor</a>
+    <a style="margin-left: 1%;" href="{% url 'seccion' %}">Seccion</a>
+    <a style="margin-left: 1%;" href="{% url 'busqueda' %}">Busqueda</a>
+    <a style="margin-left: 1%;" href="{% url 'formulario_autor' %}">Crear Autor</a>
+    <a style="margin-left: 1%;" href="{% url 'formulario_articulo' %}">Crear Articulo</a>
+    <a style="margin-left: 1%;" href="{% url 'formulario_seccion' %}">Crear Seccion</a>
+    <a style="margin-left: 1%;" href="{% url 'Logout' %}">Logout</a>
+
+    {% if avatar %}
+        <img height="40px" src="{{ avatar }}"/>
+    {% endif %}
+    <p> Hola, {{ user.username }} !!</p>
+    {% endif %}
+
        
     </nav>
 </header>
 <body style="background-color: blanchedalmond; margin-left: 1%;">
 
-<h3>Aplicacion: Blog </h3>
-
-
-<ul>
-    <li>Tema:templates </li>
-    <li>Curso: python</li>
-    <li>Integrantes: María Llorens, María Ciordia y Martín Furon </li>
-
-</ul>
+    <h1>Bienvenidos al Blog creado por : María Llorens, María Ciordia y Martín Furon </h1>
 
 
 

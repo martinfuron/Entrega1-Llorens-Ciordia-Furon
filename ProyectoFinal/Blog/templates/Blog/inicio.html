@@ -3,5 +3,9 @@
 {% load static %}
 
 {% block Insertar_contenido %}
-Este es el template de inicio
+
+{% if mensaje %}
+{{ mensaje }}
+{% endif %}
+
 {% endblock %}
